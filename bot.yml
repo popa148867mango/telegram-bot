@@ -25,6 +25,6 @@ jobs:
 
       - name: Run bot
         env:
-          TOKEN: ${{ secrets.TOKEN }} # Токен бота храни в Settings -> Secrets -> Actions
+          TOKEN: ${{ secrets.BOT_TOKEN6767 }} # Токен бота храни в Settings -> Secrets -> Actions
         run: |
           python main.py
