@@ -1,0 +1,30 @@
+name: Telegram Bot
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * *' # Чтобы бот не засыпал, он будет "пинговать" себя каждые 30 минут
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install aiogram requests  
+
+      - name: Run bot
+        env:
+          TOKEN: ${{ secrets.TOKEN }} # Токен бота храни в Settings -> Secrets -> Actions
+        run: |
+          python main.py
